@@ -1,8 +1,8 @@
 // require the dotenv package
 require("dotenv").config();
 
-// require that a request is made
-let request = require("request");
+// require that a request is made - api option not used
+//let request = require("request");
 
 //require axios for api
 const axios = require("axios");
@@ -90,13 +90,24 @@ function spotifyThisSong() {
 //function for movieThis `node liri.js movie-this '<movie name here>'`
 function movieThis() {
     //If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
-    if (!userQuery) {
+    if (userQuery === undefined) {
         userQuery = "Mr. Nobody";
     };
     //request omdb api
-    axios.get("http://www.omdbapi.com/?i=tt3896198" + userQuery + "&apikey=b478df2e").then(function (data) {
-        console.log(`Title: ${data.data.Title}`)
-    })
+    var queryUrl = "http://www.omdbapi.com/?t=" + userQuery + "&y=&plot=short&apikey=trilogy";
+    //use axios npm to request
+    axios
+        .get(queryUrl).then(function (response) {
+            //Title of the movie
+            //Year the movie came out
+            //IMDB Rating of the movie
+            //Rotten Tomatoes Rating of the movie
+            //Country where the movie was produced
+            //Language of the movie
+            //Plot of the movie
+            //Actors in the movie
+            console.log(`Title: ${response.data.Title} Released: ${response.data.Year} IMDB Rating: ${response.data.Rated} Rotten Tomatoes: ${response.data.Ratings[1].Value} Produced: ${response.data.Country} Language: ${response.data.Language} Plot: ${response.data.Plot} Actors: ${response.data.Actors}`)
+        })
 };
 
 //function do-what-it-says `node liri.js do-what-it-says`
