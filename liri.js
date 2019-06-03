@@ -1,8 +1,8 @@
 // require the dotenv package
 require("dotenv").config();
 
-// require that a request is made - api option not used
-//let request = require("request");
+// require that a request is made - didnt need
+// let request = require("request");
 
 //require axios for api
 const axios = require("axios");
@@ -51,18 +51,19 @@ user(userInput, userQuery);
 
 //function concertThis node liri.js concert-this <artist/band name here>
 function concertThis() {
-    console.log(`SEARCHING`);
-    axios.get("https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp").then(function (data) {
-        for (var i = 0; i < data.data.length; i++) {
-            //Name of the venue
-            //Venue location
-            console.log(`Venue: ${data.data[i].venue.name} Venue Location: ${$data.data[i].venue.latitude},${data.data[i].venue.longitude} Venue City: ${data.data[i].venue.city}, ${data.data[i].venue.country}`)
+    let queryUrl = "https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp";
+    axios
+        .get(queryUrl).then(function (response) {
+            for (let i = 0; i < response.data.length; i++) {
+                //Name of the venue
+                //Venue location
+                console.log(`Venue Name: ${response.data[i].venue.name} Venue Location: ${response.data[i].venue.city}, ${response.data[i].venue.country}`)
 
-            //Date of the Event(use moment to format this as "MM/DD/YYYY")
-            var eventDate = moment(data.data[i].datetime).format("MM/DD/YYYY hh:00 A");
-            console.log(`Date and Time: ${eventDate}`);
-        }
-    })
+                //Date of the Event(use moment to format this as "MM/DD/YYYY")
+                var eventDate = moment(response.data[i].datetime).format("MM/DD/YYYY hh:00 A");
+                console.log(`Date and Time: ${eventDate}`);
+            }
+        })
 
 };
 
@@ -94,7 +95,7 @@ function movieThis() {
         userQuery = "Mr. Nobody";
     };
     //request omdb api
-    var queryUrl = "http://www.omdbapi.com/?t=" + userQuery + "&y=&plot=short&apikey=trilogy";
+    let queryUrl = "http://www.omdbapi.com/?t=" + userQuery + "&y=&plot=short&apikey=trilogy";
     //use axios npm to request
     axios
         .get(queryUrl).then(function (response) {
