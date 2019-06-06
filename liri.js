@@ -1,7 +1,7 @@
 // require the dotenv package
 require("dotenv").config();
 
-// require that a request is made - didnt need
+// require that a request is made
 // let request = require("request");
 
 //require axios for api

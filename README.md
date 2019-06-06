@@ -52,3 +52,13 @@ LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a co
    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody'
 
 ![Screen Three](./links/movie-this-screen.gif)
+
+### Do What It Says:
+
+✅ `node liri.js do-what-it-says`
+
+   * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+
+     * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`
+
+![Screen Four](./links/do-what-it-says.gif)
